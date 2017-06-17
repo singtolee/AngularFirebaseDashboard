@@ -11,8 +11,12 @@ import { routes } from './app.routes';
 
 import { AngularFireModule } from 'angularfire2';
 import { AuthService} from './auth.service';
-import { AngularFireAuth } from 'angularfire2/auth';
+//import { AngularFireAuth, AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import { UploadComponent } from './upload/upload.component';
+import { AddressesComponent } from './addresses/addresses.component';
+//import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCOL_GgaWIYbQAdSvZzF0RH9w8nnQRG_jU",
@@ -29,16 +33,19 @@ export const firebaseConfig = {
     AppComponent,
     CategoriesComponent,
     LoginComponent,
-    UploadComponent
+    UploadComponent,
+    AddressesComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     routes,
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
-  providers: [AuthService,AngularFireAuth],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

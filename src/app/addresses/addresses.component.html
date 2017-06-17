@@ -1,0 +1,11 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-6 col-md-6 col-lg-6">
+      <label>Add more locations...HIT ENTER</label>
+      <input class="form-control" type="text" placeholder="add an new Office Building" (keyup.enter)="addNewItem($event.target.value)"[(ngModel)]="newItem">
+      <div class="list-group">
+        <a class="list-group-item list-group-item-info" *ngFor="let item of items | async"><button type="button" class="btn btn-danger btn-xs" (click)="removeAddress(item.$key)">DELETE</button> {{item.$value}}</a>
+      </div>
+    </div>
+  </div>
+</div>
