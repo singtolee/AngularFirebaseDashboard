@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   selector: 'app-categories',
@@ -7,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoriesComponent implements OnInit {
 
-  constructor() { }
+  prds: FirebaseListObservable<any[]>;
+
+  constructor(public afAuth:AngularFireAuth,public af:AngularFireDatabase) {
+    this.prds = af.list('/AllProduct');
+  }
 
   ngOnInit() {
   }

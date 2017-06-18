@@ -1,3 +1,20 @@
-<p>
-  categories works!
-</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-6 col-md-6 col-lg-6">
+      <div class="list-group" *ngFor="let item of prds | async">
+        <a class="list-group-item list-group-item-info">{{item.productName}}</a>
+        <a class="list-group-item list-group-item-info">{{item.productSubDetail}}</a>
+        <a class="list-group-item list-group-item-info">THB {{item.productPrice}}</a>
+        <a class="list-group-item list-group-item-info">{{item.productPackageInfo}}</a>
+        <a class="list-group-item list-group-item-info" *ngIf="item.productRefundable">Refundable</a>
+        <a class="list-group-item list-group-item-danger" *ngIf="!item.productRefundable"><span class="glyphicon glyphicon-info-sign"></span>Non Refundable</a>
+        <div class="list-group" *ngFor="let pCS of item.prodcutCS">
+          <a class="list-group-item list-group-item-danger">{{pCS}}</a>
+        </div>
+        <div class="list-group" *ngFor="let pImg of item.productImages">
+          <img class="img-rounded" src={{pImg}} width="100" height="100">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
