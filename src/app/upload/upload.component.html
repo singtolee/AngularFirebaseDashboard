@@ -1,3 +1,16 @@
-<p>
-  upload works!
-</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-6 col-xs-12 col-md-4">
+      <label for="sel1">Select Category:</label>
+      <select class="form-control">
+        <option *ngFor="let item of cates | async">{{item.$value}}</option>
+      </select>
+    </div>
+    <div class="col-sm-6 col-xs-12 col-md-4">
+      <label for="sel1">Select Suppler:</label>
+      <select class="form-control">
+        <option *ngFor="let sup of suppliers | async">{{sup.supplerName}}</option>
+      </select>
+    </div>
+  </div>
+</div>
