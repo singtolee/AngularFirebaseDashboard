@@ -1,16 +1,49 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-6 col-xs-12 col-md-4">
-      <label for="sel1">Select Category:</label>
-      <select class="form-control">
-        <option *ngFor="let item of cates | async">{{item.$value}}</option>
-      </select>
+    <div class="col-xs-12 col-sm-6">
+      <form>
+        <div>
+          <label for="sel1">Select Category:</label>
+          <select class="form-control">
+            <option *ngFor="let item of cates | async">{{item.$value}}</option>
+          </select>
+        </div>
+        <div>
+          <label for="sel1">Select Suppler:</label>
+          <select class="form-control">
+            <option *ngFor="let sup of suppliers | async">{{sup.supplerName}}</option>
+          </select>
+        </div>
+        <div>
+          <label for="prdID">Product ID:</label>
+          <input type="text" class="form-control" id="prdID" required>
+        </div>
+        <div>
+          <label for="prdName">Product Name:</label>
+          <input type="text" class="form-control" id="prdName" required>
+        </div>
+        <div>
+          <label for="prdPrice">Product Price:</label>
+          <input type="text" class="form-control" id="prdPrice" required>
+        </div>
+        <div>
+          <label for="prdPackage">Product Package:</label>
+          <input type="text" class="form-control" id="prdPackage" required>
+        </div>
+        <div>
+          <label for="prdDes">Product Description:</label>
+          <textarea type="text" class="form-control" id="prdDes" required></textarea>
+        </div>
+        <div>
+          <form>
+            <label class="radio-inline"><input type="radio" name="isprdRefundable" value="refundable" checked> Refundable </label>
+            <label class="radio-inline"><input type="radio" name="isprdRefundable" value="nonrefundable"> Non-Refundable </label>
+          </form>
+        </div>
+      </form>
     </div>
-    <div class="col-sm-6 col-xs-12 col-md-4">
-      <label for="sel1">Select Suppler:</label>
-      <select class="form-control">
-        <option *ngFor="let sup of suppliers | async">{{sup.supplerName}}</option>
-      </select>
+    <div class="col-xs-12 col-sm-6">
+      <label>asdfasd</label>
     </div>
   </div>
 </div>
