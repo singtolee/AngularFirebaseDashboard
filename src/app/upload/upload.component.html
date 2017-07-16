@@ -46,15 +46,17 @@
       <div *ngIf="currentUpload">
         <progress class="progress is-success" min=1 max=100 value="{{currentUpload?.progress}}"></progress>
         Progress: {{currentUpload?.name}}|{{currentUpload?.progress}}% Complete
+        <img class="img-rounded" src={{currentUpload?.url}} style="width:50%">
       </div>
       <div class="box">
         <h4>Drop Images</h4>
-        <div class="dropzone"
+        <div class="panel panel-default"
           appFileDrop
           (filesDropped)="handleDrop($event)"
           (filesHovered)="dropzoneState($event)"
-          [ngClass]="{'active': dropzoneActive}">
-          <i class="fa fa-cloud-upload fa-2x"></i>
+          [ngClass]="{'panel-info': dropzoneActive}">
+          <h2 class="text-center"><span class="glyphicon glyphicon-cloud"></span></h2>
+        </div>
       </div>
     </div>
   </div>
