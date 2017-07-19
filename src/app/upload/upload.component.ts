@@ -17,6 +17,11 @@ export class UploadComponent implements OnInit {
 
   suppliers: FirebaseListObservable<any[]>;
 
+  pID:string;
+  pCate="Accessories";
+
+  private prdImgUrls: FirebaseListObservable<any[]>;
+
   currentUpload: Imgupload;
   dropzoneActive: boolean = false;
 
@@ -33,9 +38,14 @@ export class UploadComponent implements OnInit {
     let fileIndex = _.range(fileList.length)
 
     _.each(fileIndex,(idx)=>{
-      this.currentUpload = new Imgupload(fileList[idx]);
-      this.uploadService.pushUpload(this.currentUpload)
+      this.currentUpload = new Imgupload(fileList[idx],this.pCate,this.pID);
+      this.uploadService.pushUpload(this.currentUpload);
+      this.prdImgUrls = this.af.list(`zIMGTEMPURLS/${this.pCate}/${this.pID}`);
     })
+  }
+
+  removeFromList(url){
+
   }
 
   ngOnInit() {

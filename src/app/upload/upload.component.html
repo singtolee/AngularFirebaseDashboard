@@ -1,11 +1,11 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-xs-12 col-sm-6">
-      <form>
+      <form #prdForm="ngForm">
         <div>
-          <label for="sel1">Select Category:</label>
-          <select class="form-control">
-            <option *ngFor="let item of cates | async">{{item.$value}}</option>
+          <label for="prdCate">Select Category:</label>
+          <select class="form-control" id="prdCate" required [(ngModel)]="pCate" name="prdCate">
+            <option *ngFor="let item of cates | async" [value]="item.$value">{{item.$value}}</option>
           </select>
         </div>
         <div>
@@ -16,7 +16,7 @@
         </div>
         <div>
           <label for="prdID">Product ID:</label>
-          <input type="text" class="form-control" id="prdID" required>
+          <input class="form-control" [(ngModel)]="pID" name="prdID" required>
         </div>
         <div>
           <label for="prdName">Product Name:</label>
@@ -43,20 +43,22 @@
       </form>
     </div>
     <div class="col-xs-12 col-sm-6">
-      <div *ngIf="currentUpload">
-        <progress class="progress is-success" min=1 max=100 value="{{currentUpload?.progress}}"></progress>
-        Progress: {{currentUpload?.name}}|{{currentUpload?.progress}}% Complete
-        <img class="img-rounded" src={{currentUpload?.url}} style="width:50%">
-      </div>
       <div class="box">
         <h4>Drop Images</h4>
-        <div class="panel panel-default"
+        <div class="alert alert-danger" *ngIf="!pID">
+          <h5 class="text-center">SET PRODUCT ID FIRST.</h5>
+        </div>
+        <div class="alert alert-info" *ngIf="pID"
           appFileDrop
           (filesDropped)="handleDrop($event)"
           (filesHovered)="dropzoneState($event)"
-          [ngClass]="{'panel-info': dropzoneActive}">
+          [ngClass]="{'alert-danger': dropzoneActive}">
           <h2 class="text-center"><span class="glyphicon glyphicon-cloud"></span></h2>
         </div>
+      </div>
+      <div class="col-xs-4" *ngFor="let pimg of prdImgUrls | async">
+        <img class="img-rounded" src={{pimg.$value}} style="width:100%">
+        <button type="button" class="btn btn-danger btn-xs" (click)="removeFromList(pimg.$value)">DELETE</button>
       </div>
     </div>
   </div>

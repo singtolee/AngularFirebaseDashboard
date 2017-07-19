@@ -10,26 +10,43 @@ export class UploadimgService {
 
   pushUpload(imgupload: Imgupload){
     let storageRef = firebase.storage().ref();
-    let uploadTask = storageRef.child(`test/${imgupload.file.name}`).put(imgupload.file);
+    let uploadTask = storageRef.child(`PRODUCTIMAGES/${imgupload.category}/${imgupload.prdID}/${imgupload.file.name}`).put(imgupload.file);
 
     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
     (snapshot)=>{
       //uploading
-      imgupload.progress = (snapshot.bytesTransferred/snapshot.totalBytes)*100
+      imgupload.progress = (snapshot.bytesTransferred/snapshot.totalBytes)*100;
     },
     (error)=>{
       //upload failed
-      console.log(error)
+      console.log(error);
     },
     ()=>{
       //upload success
-      imgupload.url = uploadTask.snapshot.downloadURL
-      imgupload.name = imgupload.file.name
-
+      imgupload.url = uploadTask.snapshot.downloadURL;
+      imgupload.name = imgupload.file.name;
+      this.saveUrltodatabase(imgupload);
     }
     );
     
     
+  }
+
+  //writes img urls to database
+  private saveUrltodatabase(upload: Imgupload){
+    this.db.list(`zIMGTEMPURLS/${upload.category}/${upload.prdID}`).push(upload.url);
+
+  }
+
+  private deleteImg(){
+  }
+
+  private deleteFromDB(){
+
+  }
+
+  private deleteFromStorage(){
+
   }
 
 }
