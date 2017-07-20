@@ -5,6 +5,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { UploadimgService } from './uploadimg.service';
 import { Imgupload } from './imgupload';
 import * as _ from "lodash";
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-upload',
@@ -44,8 +45,11 @@ export class UploadComponent implements OnInit {
     })
   }
 
-  removeFromList(url){
-
+  removeFromList(key:string,url:string){
+    let imgRef = firebase.storage().refFromURL(url);
+    imgRef.delete().then(()=>{
+      this.af.list(`zIMGTEMPURLS/${this.pCate}/${this.pID}`).remove(key);
+    }).catch(error=>console.log(error));
   }
 
   ngOnInit() {

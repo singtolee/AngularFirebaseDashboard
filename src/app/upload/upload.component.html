@@ -58,7 +58,7 @@
       </div>
       <div class="col-xs-4" *ngFor="let pimg of prdImgUrls | async">
         <img class="img-rounded" src={{pimg.$value}} style="width:100%">
-        <button type="button" class="btn btn-danger btn-xs" (click)="removeFromList(pimg.$value)">DELETE</button>
+        <button type="button" class="btn btn-danger btn-xs" (click)="removeFromList(pimg.$key,pimg.$value)">DELETE</button>
       </div>
     </div>
   </div>
