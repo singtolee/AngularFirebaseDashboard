@@ -48,7 +48,8 @@ export class UploadComponent implements OnInit {
   removeFromList(key:string,url:string){
     let imgRef = firebase.storage().refFromURL(url);
     imgRef.delete().then(()=>{
-      this.af.list(`zIMGTEMPURLS/${this.pCate}/${this.pID}`).remove(key);
+      this.prdImgUrls.remove(key);
+      //this.af.list(`zIMGTEMPURLS/${this.pCate}/${this.pID}`).remove(key);
     }).catch(error=>console.log(error));
   }
 
